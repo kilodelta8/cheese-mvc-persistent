@@ -8,11 +8,8 @@ import java.util.List;
 /**
  * Created by LaunchCode
  */
-
-
 @Entity
 public class Cheese {
-
 
     @Id
     @GeneratedValue
@@ -26,11 +23,8 @@ public class Cheese {
     @Size(min=1, message = "Description must not be empty")
     private String description;
 
-
     @ManyToOne
     private Category category;
-
-
 
     @ManyToMany(mappedBy = "cheeses")
     private List<Menu> menus;
@@ -40,7 +34,6 @@ public class Cheese {
         this.description = description;
     }
 
-    // leave default constructor so hibernate can use it
     public Cheese() { }
 
     public int getId() {
@@ -63,11 +56,15 @@ public class Cheese {
         this.description = description;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Category getCategory() {
+        return this.category;
+    }
+
+    public boolean isMyCategory(Category category){
+        return this.category.equals(category);
     }
 }
